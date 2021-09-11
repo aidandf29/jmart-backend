@@ -10,8 +10,7 @@ package aidanJmartBO;
 
 public class Jmart
 {
-    public static void main (String args[])
-    {
+    public static void main (String args[]) {
         
         System.out.println(getPromo());
         System.out.println(getCustomer());
@@ -24,11 +23,11 @@ public class Jmart
         
     }
     
-    public static int getPromo(){
+    public static int getPromo() {
         return 0;
     }
     
-    public static String getCustomer(){
+    public static String getCustomer() {
         return "oop";
     }
         
@@ -38,37 +37,37 @@ public class Jmart
             return 0.0f;
         }
         else{
-            return (float) (before - after)/before*100;
+            return (float) (before - after) / before*100;
         }
         
     }
     
-    public static int getDiscountedPrice(int price, float discountPercentage){
-        if (discountPercentage > 100.0f){
+    public static int getDiscountedPrice(int price, float discountPercentage) {
+        if (discountPercentage > 100.0f) {
             return 0;
         }
         else{
             float floatPrice = (float) price;
-            return (int) (floatPrice - (floatPrice * discountPercentage/100));
+            return (int) (floatPrice - (floatPrice * discountPercentage / 100));
         }
     }
     
-    public static int getOriginalPrice(int discountedPrice, float discountPercentage){
+    public static int getOriginalPrice(int discountedPrice, float discountPercentage) {
         float floatdiscountedPrice = (float) discountedPrice;
-        return (int) (floatdiscountedPrice * (100/(100-discountPercentage)));
+        return (int) (floatdiscountedPrice * (100 / (100-discountPercentage)));
         
     }
     
-    public static float getCommissionMultiplier(){
+    public static float getCommissionMultiplier() {
         return 0.05f;
     }
     
-    public static int getAdjustedPrice(int price){
+    public static int getAdjustedPrice(int price) {
         float floatPrice = (float) price;
         return (int) (floatPrice + (floatPrice * getCommissionMultiplier()));
     }
     
-    public static int getAdminFee(int price){
+    public static int getAdminFee(int price) {
         float floatprice = (float) price;
         return (int) (floatprice * getCommissionMultiplier());
     }
