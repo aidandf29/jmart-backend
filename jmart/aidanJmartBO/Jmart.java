@@ -37,7 +37,7 @@ public class Jmart
             return 0.0f;
         }
         else{
-            return (float) (before - after) / before*100;
+            return (float) (before - after) / before * 100;
         }
         
     }
@@ -54,7 +54,7 @@ public class Jmart
     
     public static int getOriginalPrice(int discountedPrice, float discountPercentage) {
         float floatdiscountedPrice = (float) discountedPrice;
-        return (int) (floatdiscountedPrice * (100 / (100-discountPercentage)));
+        return (int) (floatdiscountedPrice * (100 / (100 - discountPercentage)));
         
     }
     
