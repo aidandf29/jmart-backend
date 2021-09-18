@@ -12,17 +12,23 @@ public class Jmart
 {
     public static void main (String args[]) {
         
-        System.out.println(getPromo());
-        System.out.println(getCustomer());
-        System.out.println(getDiscountPercentage(1000, 900));
-        System.out.println(getDiscountedPrice(1000, 10.0f));
-        System.out.println(getOriginalPrice(900, 10.0f));
-        System.out.println(getCommissionMultiplier());
-        System.out.println(getAdjustedPrice(1000));
-        System.out.println(getAdminFee(1000));
-        
+        //System.out.println(getPromo());
+        //System.out.println(getCustomer());
+        //System.out.println(getDiscountPercentage(1000, 900));
+        //System.out.println(getDiscountedPrice(1000, 10.0f));
+        //System.out.println(getOriginalPrice(900, 10.0f));
+        //System.out.println(getCommissionMultiplier());
+        //System.out.println(getAdjustedPrice(1000));
+        //System.out.println(getAdminFee(1000));
+        //create();
+                
     }
     
+    public static Product create(){
+       return new Product("FIFA 20", 20, true, new PriceTag(100000.0), ProductCategory.GAMING);
+    }
+    
+    /*
     public static int getPromo() {
         return 0;
     }
@@ -71,4 +77,5 @@ public class Jmart
         float floatprice = (float) price;
         return (int) (floatprice * getCommissionMultiplier());
     }
+    */
 }
