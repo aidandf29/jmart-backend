@@ -29,7 +29,7 @@ public class Jmart
     }
     
     public static ShipmentDuration createShipmentDuration(){
-        return null;
+        return (new ShipmentDuration(ShipmentDuration.INSTANT, ShipmentDuration.KARGO));
     }
 
 }
