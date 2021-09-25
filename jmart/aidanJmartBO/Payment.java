@@ -24,11 +24,17 @@ public class Payment extends Transaction implements FileParser
     }
     
     @Override
-    public boolean read(String content)
-    {
+    public boolean read(String content){
         return false;
     }
+
+    public boolean validate(){
+        return false;
+    }
+
+    public Transaction perform(){
+        return null;
+    }
     
-    public abstract boolean validate();
-    public abstract Transaction perform();
+
 }
