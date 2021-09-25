@@ -20,16 +20,18 @@ public class Jmart
     //   return new Product("FIFA 20", 20, true, new PriceTag(100000.0), ProductCategory.GAMING);
     //
     
-    public static Product createProduct() {
-        return null;
+    public static Product createProduct()
+    {
+        //Product productLaptop = new Product("Laptop", 3, false, new PriceTag(4000000,10), ProductCategory.ELECTRONIC);
+        //return productLaptop;
     }
-    
-    public static Coupon createCoupon() {
-        return null;
+    public static Coupon createCoupun()
+    {
+        return new Coupon("Kupon Discount 50%", 1, Coupon.Type.DISCOUNT, 40, 15000);
     }
-    
-    public static ShipmentDuration createShipmentDuration(){
-        return (new ShipmentDuration(ShipmentDuration.INSTANT, ShipmentDuration.KARGO));
+    public static ShipmentDuration createShipmentDuration()
+    {
+        return new ShipmentDuration(ShipmentDuration.INSTANT, ShipmentDuration.SAME_DAY);
     }
 
 }

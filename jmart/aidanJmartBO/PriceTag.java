@@ -15,35 +15,37 @@ public class PriceTag
     public double  discount;
     public double price;
     
-    public PriceTag(double price){
+    public PriceTag(double price)
+    {
         this.price = price;
         this.discount = 0.0;
     }
-    public PriceTag(double price, double discount){
+    public PriceTag(double price, double discount)
+    {
         this.price = price;
         this.discount = discount;
     }
-    
-    public double getAdjustedPrice(){
+    public double getAdjustedPrice()
+    {
         return getDiscountedPrice() + getAdminFee();
     }
-    
-    public double getAdminFee(){
-        if (this.getDiscountedPrice() < BOTTOM_PRICE) {
+    public double getAdminFee()
+    {
+        if(getDiscountedPrice() < BOTTOM_PRICE){
             return BOTTOM_FEE;
-        }
-        else {
-            return getDiscountedPrice() * ( 1- COMMISSION_MULTIPLIER);
+        }else{
+            return getDiscountedPrice() * COMMISSION_MULTIPLIER;
         }
     }
-    
-    public double getDiscountedPrice(){
-        if (this.discount >= 100) {
-            this.price = 0.0;
-            return this.price;
+    private double getDiscountedPrice()
+    {
+        if(discount > 100.0){
+            discount = 100.0;
         }
-        else {
-            return price - (price * discount);
+        if(discount == 100.0){
+            return 0.0;
+        }else{
+            return price * ((100.0 - discount)/100.0);
         }
     }
 }
