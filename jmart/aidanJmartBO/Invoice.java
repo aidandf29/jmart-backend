@@ -9,7 +9,7 @@ package aidanJmartBO;
  */
 public abstract class Invoice extends Recognizable implements FileParser
 {
-    public String date = "16 Mei 2001";
+    public String date = "16 Mei 2010";
     public int buyerId;
     public int productId;
     public int complaintId;
@@ -40,7 +40,7 @@ public abstract class Invoice extends Recognizable implements FileParser
     protected Invoice(int id, int buyerId, int productId) 
     {
         super(id);
-        date = "29 Mei 2001";
+        date = "16 Mei 2001";
         rating = Rating.NONE;
         status = Status.WAITING_CONFIRMATION;
         this.buyerId = buyerId;
