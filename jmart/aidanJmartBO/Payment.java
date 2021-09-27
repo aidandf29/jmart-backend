@@ -7,34 +7,33 @@ package aidanJmartBO;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Payment extends Transaction implements FileParser
+public class Payment extends Invoice implements Transactor
 {
-    public int productId;
-    public ShipmentDuration shipmentDuration;
-    
-    
-    public Payment(int id, int buyerId, Product product, ShipmentDuration shipmentDuration)
+    public int productCount;
+    public Shipment shipment;
+
+    public Payment(int id, int buyerId, int productId, int productCount, Shipment shipment) 
     {
-        super(id, 0, 0);
+        super(id, buyerId, productId);
+        this.productCount = productCount;
+        this.shipment = shipment;
     }
-    
-    public Payment(int id, int buyerId, int storeId, int productId, ShipmentDuration shipmentDuration)
-    {
-      super(id, 0, 0);  
-    }
-    
+
     @Override
-    public boolean read(String content){
+    public double getTotalPay() 
+    {
+        return 0.0;
+    }
+
+    @Override
+    public boolean validate() 
+    {
         return false;
     }
 
-    public boolean validate(){
-        return false;
-    }
-
-    public Transaction perform(){
+    @Override
+    public Invoice perform() 
+    {
         return null;
     }
-    
-
 }

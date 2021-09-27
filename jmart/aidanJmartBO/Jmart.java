@@ -23,15 +23,17 @@ public class Jmart
     public static Product createProduct()
     {
         //Product productLaptop = new Product("Laptop", 3, false, new PriceTag(4000000,10), ProductCategory.ELECTRONIC);
-        //return productLaptop;
+        return null;
     }
     public static Coupon createCoupun()
     {
-        return new Coupon("Kupon Discount 50%", 1, Coupon.Type.DISCOUNT, 40, 15000);
+        return null;
+        //return new Coupon("Kupon Discount 50%", 1, Coupon.Type.DISCOUNT, 40, 15000);
     }
-    public static ShipmentDuration createShipmentDuration()
+    public static Shipment.Duration createShipmentDuration()
     {
-        return new ShipmentDuration(ShipmentDuration.INSTANT, ShipmentDuration.SAME_DAY);
+        //return new ShipmentDuration(ShipmentDuration.INSTANT, ShipmentDuration.SAME_DAY);
+        return null;
     }
 
 }

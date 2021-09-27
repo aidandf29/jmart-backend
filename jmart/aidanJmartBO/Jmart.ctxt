@@ -8,5 +8,5 @@ comment2.target=Product\ createProduct()
 comment3.params=
 comment3.target=Coupon\ createCoupun()
 comment4.params=
-comment4.target=ShipmentDuration\ createShipmentDuration()
+comment4.target=Shipment.Duration\ createShipmentDuration()
 numComments=5

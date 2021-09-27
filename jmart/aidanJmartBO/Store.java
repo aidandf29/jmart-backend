@@ -35,4 +35,10 @@ public class Store extends Recognizable implements FileParser
     {
         return false;
     }
+    
+    @Override
+    public String toString(){
+        return "Name : " + this.name + "\nAddress : " + this.address + "\nPhoneNumber : " + this.phoneNumber;
+    }
+    
 }

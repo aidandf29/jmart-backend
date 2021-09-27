@@ -9,45 +9,43 @@ package aidanJmartBO;
  */
 public class Product extends Recognizable implements FileParser
 {
-    
     public String name;
     public int weight;
     public boolean conditionUsed;
     public PriceTag priceTag;
     public ProductCategory category;
     public ProductRating rating;
-    public int storedId;
-    
-    public Product(int id, int storeId, String name, int weight, boolean conditionUsed, PriceTag priceTag, ProductCategory category){
+    public int storeId;
+    public Shipment.MultiDuration multiDuration;
+
+    public Product(int id, int storeId, String name, int weight, boolean conditionUsed,PriceTag priceTag, ProductCategory category, Shipment.MultiDuration multiDuration)
+    {
         super(id);
-        this.storedId = storeId;
+        this.storeId = storeId;
         this.name = name;
         this.weight = weight;
         this.conditionUsed = conditionUsed;
         this.priceTag = priceTag;
-        this.category = category;
         this.rating = new ProductRating();
-        
-    }
-    
-    public Product(int id, Store store, String name, int weight, boolean conditionUsed, PriceTag priceTag, ProductCategory category){
-        super(id);
-        this.name = name;
-        this.weight = weight;
-        this.conditionUsed = conditionUsed;
-        this.priceTag = priceTag;
         this.category = category;
-        this.rating = new ProductRating();
-        //this.store = store;
-        
+        this.multiDuration = multiDuration;
     }
-    
+
     @Override
-    public boolean read(String content){
+    public boolean read(String content) 
+    {
         return false;
     }
-    
-    
-    
-    
+
+    @Override
+    public String toString()
+    {
+        return "Name: " + this.name + " \n"+
+        "Weight: " + this.weight +" \n"+
+        "ConditionUsed: " + this.conditionUsed + " \n" +
+        "PriceTag: "+ this.priceTag.price +" \n" +
+        "Category: "+ this.category +" \n" +
+        "Rating: "+ this.rating.getAverage() +" \n"+
+        "StoreId: "+ this.storeId +" \n";
+    }
 }
