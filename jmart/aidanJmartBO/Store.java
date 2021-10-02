@@ -13,7 +13,7 @@ public class Store extends Recognizable implements FileParser
     public String address;
     public String phoneNumber;
     public static final String REGEX_PHONE = "[0-9]{9,12}";
-    public static final String REGEX_NAME = "^[a-z](?!.(\\s)\\1).{4,20}$";
+    public static final String REGEX_NAME = "^[a-z](?!.(\\s)).{4,20}$";
     
     public Store(int accountId, String name, String address, String phoneNumber)
     {
