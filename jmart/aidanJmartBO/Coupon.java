@@ -10,7 +10,8 @@ package aidanJmartBO;
 public class Coupon extends Recognizable implements FileParser
 {
     
-    public enum Type{
+    public enum Type
+    {
         DISCOUNT, REBATE
     }
     // instance variables - replace the example below with your own

@@ -11,11 +11,13 @@ public interface FileParser
 {
     
     public boolean read(String content);
-    default Object write() {
+    default Object write() 
+    {
         return null;
     }
     
-    public static Object newInstance(String content) {
+    public static Object newInstance(String content) 
+    {
         return null;
     }
     

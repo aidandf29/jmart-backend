@@ -1,5 +1,5 @@
 package aidanJmartBO;
-
+import java.util.Date;
 
 /**
  * Write a description of class Jmart here.
@@ -10,9 +10,11 @@ package aidanJmartBO;
 
 public class Jmart
 {
-    public static void main (String args[]) {
-        
-        //create();
+    public static void main (String args[]) 
+    {
+        System.out.println(Shipment.Duration.INSTANT.getEstimatedArrival(new Date()));
+        Store store = new Store (99, "Muh Aidan", "Depok", "08577824567");
+        System.out.println(store.validate());
                 
     }
     

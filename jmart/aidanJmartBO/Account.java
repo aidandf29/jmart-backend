@@ -28,7 +28,8 @@ public class Account extends Recognizable implements FileParser
     }
     
     @Override
-    public String toString(){
+    public String toString()
+    {
         return "Name : " + this.name + "\nEmail : " + this.email + "\nPassword : " + this.password;
     }
     

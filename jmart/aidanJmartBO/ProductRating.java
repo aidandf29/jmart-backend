@@ -12,17 +12,20 @@ public class ProductRating
     private long total;
     private long count;
     
-    public ProductRating(){
+    public ProductRating()
+    {
         this.total = 0;
         this.count = 0;
     }
     
-    public void insert(int rating){
+    public void insert(int rating)
+    {
         this.total += rating;
         count++;
     }
     
-    public double getAverage(){
+    public double getAverage()
+    {
         if (count != 0){
             return this.total / (double)this.count;
         }
@@ -31,11 +34,13 @@ public class ProductRating
         }
     }
     
-    public long getCount(){
+    public long getCount()
+    {
         return count;
     }
     
-    public long getTotal(){
+    public long getTotal()
+    {
         return total;
     }
     

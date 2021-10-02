@@ -4,6 +4,6 @@ package aidanJmartBO;
 public interface Transactor 
 {
     
-    public boolean validate();
-    public Invoice perform();
+    public abstract boolean validate();
+    public abstract Invoice perform();
 }

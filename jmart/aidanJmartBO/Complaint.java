@@ -1,5 +1,5 @@
 package aidanJmartBO;
-
+import java.util.Date;
 
 /**
  * Write a description of class Complaint here.
@@ -9,12 +9,14 @@ package aidanJmartBO;
  */
 public class Complaint extends Recognizable implements FileParser
 {
+    
     public String desc;
-    public String date = "16 Mei 2001";
+    public Date date;
     
     public Complaint(int id, String desc){
         super(id);
         this.desc = desc;
+        this.date = new Date();
     }
 
     @Override
