@@ -14,7 +14,9 @@ public class Jmart
     {
         System.out.println(Shipment.Duration.INSTANT.getEstimatedArrival(new Date()));
         Store store = new Store (99, "Muh Aidan", "Depok", "08577824567");
-        System.out.println(store.validate());
+        //System.out.println(store.validate());
+        Account account = new Account(1, "Aidan", "aidan@ui.ac.id", "Aidan123");
+        System.out.println(account.validate());
                 
     }
     

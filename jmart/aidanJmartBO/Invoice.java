@@ -1,5 +1,6 @@
 package aidanJmartBO;
 import java.util.Date;
+import java.util.ArrayList;
 
 /**
  * Abstract class Invoice - write a description of the class here
@@ -9,12 +10,13 @@ import java.util.Date;
  */
 public abstract class Invoice extends Recognizable implements FileParser
 {
-    public Date date;
+    public final Date date;
     public int buyerId;
     public int productId;
     public int complaintId;
     public Rating rating = Rating.NONE;
     public Status status = Status.WAITING_CONFIRMATION;
+    public ArrayList<Record> history;
     
     public enum Rating 
     {
@@ -52,5 +54,11 @@ public abstract class Invoice extends Recognizable implements FileParser
     public boolean read(String content) 
     {
         return false;
+    }
+    
+    public class Record {
+        public Status status;
+        public Date date;
+        public String message;
     }
 }
