@@ -13,7 +13,7 @@ public class Account extends Recognizable implements FileParser
     public String email;
     public String password;
     public final static String REGEX_EMAIL = "(^[a-zA-Z0-9&_*~]+(?:\\.[a-zA-Z0-9&_*~]+)*@[A-Za-z0-9-_]+(?:\\.[A-Za-z0-9]+)+)"; 
-    public final static String REGEX_PASSWORD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$";
+    public final static String REGEX_PASSWORD = "^(?=.*[a-z])(?=.*\\d)(?=.*[A-Z])[a-zA-Z\\d]{8,}$";
     
     public Account(int id, String name, String email, String password)
     {
