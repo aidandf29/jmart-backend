@@ -97,13 +97,27 @@ public class Algorithm {
 	{
 		return find (iterator, pred);
 	}
-	public static <T> T Max (T first, T second)
-	{
-		return null;
-	}
-	public static <T> T Min (T first, T second)
-	{
-		return null;
-	}
-	
+	public <T extends Comparable<? super T>> T max(T first, T  second)
+    {
+        if(first.compareTo(second) > 0)
+        {
+            return first;
+        }
+        else
+        {
+        return second;
+        }
+    }
+
+    public <T extends Comparable<? super T>> T min(T  first, T  second)
+    {
+        if(first.compareTo(second) < 0)
+        {
+            return first;
+        }
+        else 
+        {
+        	return second;
+        }
+    }
 }
