@@ -14,13 +14,14 @@ public class Store extends Recognizable
     public String phoneNumber;
     public static final String REGEX_PHONE = "[0-9]{9,12}";
     public static final String REGEX_NAME = "^[a-z](?!.(\\s)).{4,20}$";
+    public double balance;
     
-    public Store(int accountId, String name, String address, String phoneNumber)
+    public Store(String name, String address, String phoneNumber, double balance)
     {
-        
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        this.balance = balance;
     }
     
     public Store(Account account, String name, String address, String phoneNumber)
