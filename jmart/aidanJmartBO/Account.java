@@ -7,7 +7,7 @@ import java.util.regex.*;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Account extends Recognizable implements FileParser
+public class Account extends Recognizable
 {
     public String name;
     public String email;
@@ -17,17 +17,12 @@ public class Account extends Recognizable implements FileParser
     
     public Account(int id, String name, String email, String password)
     {
-        super(id);
+        
         this.name = name;
         this.email = email;
         this.password = password;
     }
     
-    @Override
-    public boolean read(String content)
-    {
-        return false;
-    }
     
     @Override
     public String toString()

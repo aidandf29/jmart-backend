@@ -7,7 +7,7 @@ package aidanJmartBO;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Payment extends Invoice implements Transactor
+public class Payment extends Invoice
 {
     public int productCount;
     public Shipment shipment;
@@ -25,15 +25,4 @@ public class Payment extends Invoice implements Transactor
         return 0.0;
     }
 
-    @Override
-    public boolean validate() 
-    {
-        return false;
-    }
-
-    @Override
-    public Invoice perform() 
-    {
-        return null;
-    }
 }

@@ -7,7 +7,7 @@ package aidanJmartBO;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Coupon extends Recognizable implements FileParser
+public class Coupon extends Recognizable
 {
     
     public enum Type
@@ -27,7 +27,7 @@ public class Coupon extends Recognizable implements FileParser
      */
     public Coupon(int id, String name, int code, Type type, double cut, double minimum)
     {
-        super(id);
+       
         this.name = name;
         this.code = code;
         this.type = type;
@@ -63,8 +63,4 @@ public class Coupon extends Recognizable implements FileParser
         return (priceTag.getAdjustedPrice() - cut);
     }
     
-    @Override
-    public boolean read(String content){
-        return false;
-    }
 }

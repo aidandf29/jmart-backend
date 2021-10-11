@@ -7,7 +7,7 @@ package aidanJmartBO;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Product extends Recognizable implements FileParser
+public class Product extends Recognizable
 {
     public String name;
     public int weight;
@@ -20,7 +20,7 @@ public class Product extends Recognizable implements FileParser
 
     public Product(int id, int storeId, String name, int weight, boolean conditionUsed,PriceTag priceTag, ProductCategory category, Shipment.MultiDuration multiDuration)
     {
-        super(id);
+        
         this.storeId = storeId;
         this.name = name;
         this.weight = weight;
@@ -29,12 +29,6 @@ public class Product extends Recognizable implements FileParser
         this.rating = new ProductRating();
         this.category = category;
         this.multiDuration = multiDuration;
-    }
-
-    @Override
-    public boolean read(String content) 
-    {
-        return false;
     }
 
     @Override
