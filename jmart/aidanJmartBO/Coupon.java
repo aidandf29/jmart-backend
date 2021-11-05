@@ -40,27 +40,27 @@ public class Coupon extends Recognizable
     {
         return used;
     }
-    public boolean canApply(PriceTag priceTag)
+    public boolean canApply(double price, double discount)
     {
-        if(priceTag.getAdjustedPrice() >= minimum && !used){
+        if(Treasury.getAdjustedPrice(price, discount) >= minimum && !used){
             return true;
         }else{
             return false;
         }
     }
-    public double apply(PriceTag priceTag)
+    public double apply(double price, double discount)
     {
         used = true;
         if(type == Type.DISCOUNT){
             if(cut >= 100){
-                return (priceTag.getAdjustedPrice() - priceTag.getAdjustedPrice() * (100 / 100));
+                return (Treasury.getAdjustedPrice(price, discount) - Treasury.getAdjustedPrice(price, discount) * (100 / 100)); //cut max 100%
             }else if(cut <= 0){
-                return (priceTag.getAdjustedPrice() - priceTag.getAdjustedPrice() * (0 / 100)); 
+                return (Treasury.getAdjustedPrice(price, discount) - Treasury.getAdjustedPrice(price, discount) * (0 / 100)); //cut min 0%
             }else{
-                return (priceTag.getAdjustedPrice() - priceTag.getAdjustedPrice() * (cut / 100));
-            }  
+                return (Treasury.getAdjustedPrice(price, discount) - Treasury.getAdjustedPrice(price, discount) * (cut / 100));
+            }
         }
-        return (priceTag.getAdjustedPrice() - cut);
+        return (Treasury.getAdjustedPrice(price, cut) - cut);
     }
     
 }

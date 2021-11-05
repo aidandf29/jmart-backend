@@ -46,15 +46,7 @@ public class Recognizable implements Comparable <Recognizable>
     @Override
     public int compareTo(Recognizable other)
     {
-//    	if (other.id == this.id)
-//    	{
-//    		return other.id;
-//    	}
-//    	else
-//    	{
-//    		return 0;
-//    	}
-    	return Integer.compare(id, other.id);
+    	return (this.id < other.id) ? -1 : ((this.id == other.id) ? 0 : 1);
     }
     
     public static <T extends Recognizable> int getClosingId (Class<T>clazz)

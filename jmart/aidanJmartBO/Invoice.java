@@ -39,11 +39,12 @@ public abstract class Invoice extends Recognizable
     
     public abstract double getTotalPay();
     
-    protected Invoice(int id, int buyerId, int productId) 
+    protected Invoice(int buyerId, int productId) 
     {
         
         rating = Rating.NONE;
         status = Status.WAITING_CONFIRMATION;
+        this.complaintId = -1;
         this.buyerId = buyerId;
         this.productId = productId;
         this.date = new Date();

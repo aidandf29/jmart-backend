@@ -11,45 +11,38 @@ import java.text.SimpleDateFormat;
 public class Shipment
 {
     public String address;
-    public int shipmentCost;
-    public Duration duration;
+    public int cost;
     public String receipt;
-    
+    public byte plan;
 
-    public static class Duration
-    {
-        public static final Duration INSTANT = new Duration ((byte) (1<<0)); //0000 0001
-        public static final Duration SAME_DAY = new Duration ((byte) (1<<1)); //0000 0010
-        public static final Duration NEXT_DAY = new Duration ((byte) (1<<2)); //0000 0100
-        public static final Duration REGULER = new Duration ((byte) (1<<3)); //0000 1000
-        public static final Duration KARGO = new Duration ((byte) (1<<4)); //0001 0000
-        public final byte bit;
+  
+        public static final plan INSTANT = new plan ((byte) (1<<0)); //0000 0001
+        public static final plan SAME_DAY = new plan ((byte) (1<<1)); //0000 0010
+        public static final plan NEXT_DAY = new plan ((byte) (1<<2)); //0000 0100
+        public static final plan REGULER = new plan ((byte) (1<<3)); //0000 1000
+        public static final plan KARGO = new plan ((byte) (1<<4)); //0001 0000
         //public static final Date ESTIMATION_FORMAT;
-        SimpleDateFormat ESTIMATION_FORMAT = new SimpleDateFormat("E MMMM dd yyyy"); 
+        public static final SimpleDateFormat ESTIMATION_FORMAT = new SimpleDateFormat("E MMMM dd yyyy"); 
         
-        private Duration(byte bit)
+        static class plan
         {
-            this.bit = bit;
+            public final byte bit;
+            private plan(byte bit)
+            {
+                this.bit = bit;
+            }
         }
         
         public String getEstimatedArrival(Date reference)
         {
-            Date date = new Date();
-            if (this.bit == 1 << 0 || this.bit == 1 << 1)
-            {
-              return ESTIMATION_FORMAT.format(reference);  
-            }
-            else if (this.bit == 1 << 2 )
-            {
+        	if((plan & INSTANT.bit) != 0 || (plan & SAME_DAY.bit) != 0){
+                return ESTIMATION_FORMAT.format(reference);
+            }else if((plan & NEXT_DAY.bit) != 0){
                 return ESTIMATION_FORMAT.format(reference.getDay() + 1);
-            }
-            else if (this.bit == 1 << 3 )
-            {
+            }else if((plan & REGULER.bit) != 0){
                 return ESTIMATION_FORMAT.format(reference.getDay() + 2);
-            }
-            else
-            {
-                return ESTIMATION_FORMAT.format(reference.getDay() + 5);
+            }else {
+                return ESTIMATION_FORMAT.format(reference.getDay() + 5); //KARGO
             }
             
             
@@ -72,35 +65,41 @@ public class Shipment
                 calendar.add(Calendar.Date,0);
             }*/
         }
-    }
     
-    public class MultiDuration{
-        public byte bit;
-        public MultiDuration(Duration... args)
-        {
-            
-            byte bits = 0;
-            for (Duration arg : args){
-                bits |= arg.bit;
-            }
-            this.bit = bits;     
-        }
+//    public class MultiDuration{
+//        public byte bit;
+//        public MultiDuration(Duration... args)
+//        {
+//            
+//            byte bits = 0;
+//            for (Duration arg : args){
+//                bits |= arg.bit;
+//            }
+//            this.bit = bits;     
+//        }
         
-        public boolean isDuration(Duration reference)
-        {
-            if((bit & reference.bit) != 0){
-                return true;
-            }else{
-                return false;
-            }
+    public boolean isDuration(plan reference)
+    {
+        if((plan & reference.bit) != 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public static boolean isDuration(byte object, plan reference)
+    {
+        if((object & reference.bit) != 0){
+            return true;
+        }else{
+            return false;
         }
     }
 
-    public Shipment(String address, int shipmentCost, Duration duration, String receipt)
+    public Shipment(String address, int cost, byte plan, String receipt)
     {
         this.address = address;
-        this.shipmentCost = shipmentCost;
-        this.duration = duration;
+        this.cost = cost;
+        this.plan = plan;
         this.receipt = receipt;
     }
 
