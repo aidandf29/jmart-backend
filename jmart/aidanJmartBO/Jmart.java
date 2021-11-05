@@ -1,5 +1,10 @@
 package aidanJmartBO;
-import java.util.Date;
+
+import com.google.gson.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * Write a description of class Jmart here.
@@ -10,36 +15,27 @@ import java.util.Date;
 
 public class Jmart
 {
-    public static void main (String args[]) 
+    class Country
     {
-    	System.out.print("Hello from Eclipse");
-    	
-//        System.out.println(Shipment.Duration.INSTANT.getEstimatedArrival(new Date()));
-//        Store store = new Store (99, "Muh Aidan", "Depok", "08577824567");
-//        //System.out.println(store.validate());
-//        Account account = new Account(1, "Aidan", "aidan@ui.ac.id", "Aidan123");
-//        System.out.println(account.validate());
-                
+        public String name;
+        public int population;
+        public List<String> listOfStates;
     }
     
-    //public static Product create() {
-    //   return new Product("FIFA 20", 20, true, new PriceTag(100000.0), ProductCategory.GAMING);
-    //
-    
-    public static Product createProduct()
-    {
-        //Product productLaptop = new Product("Laptop", 3, false, new PriceTag(4000000,10), ProductCategory.ELECTRONIC);
-        return null;
+    public static void main(String[] args) {
+        String filepath = "C:\\Users\\aidan\\Documents\\nguliah\\smt 5\\OOP\\Project\\jmart/city.json";
+        Gson gson = new Gson();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(filepath));
+            Country input = gson.fromJson(br,  Country.class);
+            System.out.println("name: " + input.name);
+            System.out.println("population: " + input.population);
+            System.out.println("states: ");
+            input.listOfStates.forEach(state -> System.out.println(state));
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+        
     }
-    public static Coupon createCoupun()
-    {
-        return null;
-        //return new Coupon("Kupon Discount 50%", 1, Coupon.Type.DISCOUNT, 40, 15000);
-    }
-    public static Shipment.Duration createShipmentDuration()
-    {
-        //return new ShipmentDuration(ShipmentDuration.INSTANT, ShipmentDuration.SAME_DAY);
-        return null;
-    }
-
 }
