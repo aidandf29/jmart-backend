@@ -10,10 +10,7 @@ import java.text.SimpleDateFormat;
  */
 public class Shipment
 {
-    public String address;
-    public int cost;
-    public String receipt;
-    public byte plan;
+
 
   
         public static final plan INSTANT = new plan ((byte) (1<<0)); //0000 0001
@@ -23,6 +20,10 @@ public class Shipment
         public static final plan KARGO = new plan ((byte) (1<<4)); //0001 0000
         //public static final Date ESTIMATION_FORMAT;
         public static final SimpleDateFormat ESTIMATION_FORMAT = new SimpleDateFormat("E MMMM dd yyyy"); 
+        public String address;
+        public String receipt;
+        public int cost;
+        public byte plan;
         
         static class plan
         {
