@@ -8,6 +8,8 @@ import java.util.List;
 import com.google.gson.stream.JsonReader;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 
 /**
  * Write a description of class Jmart here.
@@ -68,7 +70,12 @@ public class Jmart
         try{       
             List<Product> list = read("C:\\Users\\aidan\\Documents\\nguliah\\smt 5\\OOP\\Project\\jmart/randomProductList.json");
             List<Product> filter = filterByPrice(list, 0.0, 20000.0);
-            filter.forEach(produk -> System.out.println(produk.price));
+           // filter.forEach(produk -> System.out.println(produk.price));
+            List<Product> filter2 = filterByName(list, "GTX", 1, 5);
+            filter2.forEach(produk -> System.out.println(produk.name));
+            System.out.println("\n");
+            List<Product> filter3 = filterByAccountId(list, 1, 0, 5);
+            filter3.forEach(produk -> System.out.println(produk.name));
         }catch (Throwable t)
         {
             t.printStackTrace();
@@ -92,6 +99,20 @@ public class Jmart
             e.printStackTrace();
         }
         return produk;
+    }
+    
+    private static List<Product> paginate(List<Product> list, int page, int pageSize, Predicate<Product> pred) {
+        return list.stream().filter(i -> pred.predicate(i)).skip(page * pageSize).limit(pageSize).collect(Collectors.toList());
+    }
+
+    public static List<Product> filterByName(List<Product> list, String search, int page, int pageSize) {
+        Predicate<Product> predicate = i -> (i.name.toLowerCase().contains(search.toLowerCase()));
+        return paginate(list, page, pageSize, predicate);
+    }
+
+    public static List<Product> filterByAccountId(List<Product> list, int accountId, int page, int pageSize) {
+        Predicate<Product> predicate = i -> (i.accountId == accountId);
+        return paginate(list, page, pageSize, predicate);
     }
          
         
