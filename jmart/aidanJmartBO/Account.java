@@ -12,17 +12,17 @@ public class Account extends Serializable
     public String name;
     public String email;
     public String password;
-    public double balance;
+//    public double balance;
     public final static String REGEX_EMAIL = "(^[a-zA-Z0-9&_*~]+(?:\\.[a-zA-Z0-9&_*~]+)*@[A-Za-z0-9-_]+(?:\\.[A-Za-z0-9]+)+)"; 
     public final static String REGEX_PASSWORD = "^(?=.*[a-z])(?=.*\\d)(?=.*[A-Z])[a-zA-Z\\d]{8,}$";
     
-    public Account(String name, String email, String password, double balance)
+    public Account(String name, String email, String password)
     {
         
         this.name = name;
         this.email = email;
         this.password = password;
-        this.balance = balance;
+        //this.balance = balance;
         
     }
     

@@ -67,19 +67,33 @@ public class Jmart
     }
     public static void main(String[] args)
     {
-        try{       
-            List<Product> list = read("C:\\Users\\aidan\\Documents\\nguliah\\smt 5\\OOP\\Project\\jmart/randomProductList.json");
-            List<Product> filter = filterByPrice(list, 0.0, 20000.0);
-           // filter.forEach(produk -> System.out.println(produk.price));
-            List<Product> filter2 = filterByName(list, "GTX", 1, 5);
-            filter2.forEach(produk -> System.out.println(produk.name));
-            System.out.println("\n");
-            List<Product> filter3 = filterByAccountId(list, 1, 0, 5);
-            filter3.forEach(produk -> System.out.println(produk.name));
-        }catch (Throwable t)
-        {
-            t.printStackTrace();
-        }
+//        try{       
+//            List<Product> list = read("C:\\Users\\aidan\\Documents\\nguliah\\smt 5\\OOP\\Project\\jmart/randomProductList.json");
+//            List<Product> filter = filterByPrice(list, 0.0, 20000.0);
+//           // filter.forEach(produk -> System.out.println(produk.price));
+//            List<Product> filter2 = filterByName(list, "GTX", 1, 5);
+//            filter2.forEach(produk -> System.out.println(produk.name));
+//            System.out.println("\n");
+//            List<Product> filter3 = filterByAccountId(list, 1, 0, 5);
+//            filter3.forEach(produk -> System.out.println(produk.name));
+//        }catch (Throwable t)
+//        {
+//            t.printStackTrace();
+//        }
+    	
+    	  try{
+    		   String filepath = "C:\\Users\\aidan\\Documents\\nguliah\\smt 5\\OOP\\Project\\jmart\\account.json" ;
+    		   JsonTable<Account> tableAccount = new JsonTable<>(Account.class, filepath);
+    		   
+    		   tableAccount.add(new Account("Name", "Email", "Password"));
+    		   tableAccount.writeJson();
+    		   tableAccount = new JsonTable<>(Account.class, filepath);
+    		   tableAccount.forEach(account -> System.out.println(account.toString()));
+    		  }
+    		  catch (Throwable t)
+    		  {
+    		   t.printStackTrace();
+    		  }
 
     }
     public static List<Product> read(String filepath) throws FileNotFoundException 
