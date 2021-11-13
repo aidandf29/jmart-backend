@@ -13,6 +13,14 @@ public class JsonTable<T> extends Vector<T>{
 	
 	public JsonTable (Class<T>clazz, String filepath) throws IOException{
 		this.filepath = filepath;
+		try{
+            Class<T[]> array = (Class<T[]>) Array.newInstance(clazz, 0).getClass();
+            T[] hasil = JsonTable.readJson(array, filepath);
+            Collections.addAll(this, hasil);
+        }
+        catch(FileNotFoundException e){
+            File file = new File(filepath);
+        }
 	}
 	
 	public static <T> T readJson (Class<T> clazz, String filepath) throws FileNotFoundException{
@@ -36,8 +44,8 @@ public class JsonTable<T> extends Vector<T>{
 			   writer.write(gson.toJson(object));
 			   writer.close();
 			  }
-			  catch (IOException ex) {
-			   ex.printStackTrace();
+			  catch (IOException e) {
+			   e.printStackTrace();
 			  }
 	}
 	
