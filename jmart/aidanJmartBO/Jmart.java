@@ -85,7 +85,7 @@ public class Jmart
     		   String filepath = "C:\\Users\\aidan\\Documents\\nguliah\\smt 5\\OOP\\Project\\jmart\\account.json" ;
     		   JsonTable<Account> tableAccount = new JsonTable<>(Account.class, filepath);
     		   
-    		   tableAccount.add(new Account("Aidan", "aidandaffa29@mail.com", "Password"));
+    		   tableAccount.add(new Account("name", "email", "Password"));
     		   tableAccount.writeJson();
     		   tableAccount = new JsonTable<>(Account.class, filepath);
     		   tableAccount.forEach(account -> System.out.println(account.toString()));
