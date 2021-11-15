@@ -20,6 +20,16 @@ import java.util.stream.Collectors;
 
 public class Jmart
 {
+	
+	public static long DELIVERED_LIMIT_MS;
+	public static long ON_DELIVERY_LIMIT_MS;
+	public static long ON_PROGRESS_LIMIT_MS;
+	public static long WAITING_CONF_LIMIT_MS;
+	
+	public static boolean paymentTimekeeper(Payment payment) {
+        return false;
+    }
+	
     class Country
     {
         public String name;
@@ -81,19 +91,41 @@ public class Jmart
 //            t.printStackTrace();
 //        }
     	
-    	  try{
-    		   String filepath = "C:\\Users\\aidan\\Documents\\nguliah\\smt 5\\OOP\\Project\\jmart\\account.json" ;
-    		   JsonTable<Account> tableAccount = new JsonTable<>(Account.class, filepath);
-    		   
-    		   tableAccount.add(new Account("name", "email", "Password"));
-    		   tableAccount.writeJson();
-    		   tableAccount = new JsonTable<>(Account.class, filepath);
-    		   tableAccount.forEach(account -> System.out.println(account.toString()));
-    		  }
-    		  catch (Throwable t)
-    		  {
-    		   t.printStackTrace();
-    		  }
+//    	  try{
+//    		   String filepath = "C:\\Users\\aidan\\Documents\\nguliah\\smt 5\\OOP\\Project\\jmart\\account.json" ;
+//    		   JsonTable<Account> tableAccount = new JsonTable<>(Account.class, filepath);
+//    		   
+//    		   tableAccount.add(new Account("name", "email", "Password"));
+//    		   tableAccount.writeJson();
+//    		   tableAccount = new JsonTable<>(Account.class, filepath);
+//    		   tableAccount.forEach(account -> System.out.println(account.toString()));
+//    		  }
+//    		  catch (Throwable t)
+//    		  {
+//    		   t.printStackTrace();
+//    		  }
+    	try {
+            String filepath = "C:\\Users\\aidan\\Documents\\nguliah\\smt 5\\OOP\\Project\\jmart/randomProductList.json";
+            JsonTable<Payment> table = new JsonTable<>(Payment.class, filepath);
+            ObjectPoolThread<Payment> paymentPool = new ObjectPoolThread<Payment>("Thread-PP", Jmart::paymentTimekeeper);
+            
+            paymentPool.start();
+            table.forEach(payment -> paymentPool.add(payment));
+            
+            while(paymentPool.size() != 0);
+            paymentPool.exit();
+            while(paymentPool.isAlive());
+            System.out.println("Thread exited successfully");
+            Gson gson = new Gson();
+            table.forEach(payment -> {
+                String history = gson.toJson(payment.history);
+                System.out.println(history);
+            });
+            
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+    	
 
     }
     public static List<Product> read(String filepath) throws FileNotFoundException 

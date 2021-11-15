@@ -31,3 +31,6 @@
 /Shipment$plan.class
 /Serializable.class
 /JsonTable.class
+/PhoneTopUp.class
+/Payment$Record.class
+/ObjectPoolThread.class

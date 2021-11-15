@@ -2,6 +2,7 @@ package aidanJmartBO;
 import java.util.Date;
 import java.util.ArrayList;
 
+
 /**
  * Abstract class Invoice - write a description of the class here
  *
@@ -14,9 +15,8 @@ public abstract class Invoice extends Serializable
     public int buyerId;
     public int productId;
     public int complaintId;
-    public Rating rating = Rating.NONE;
-    public Status status = Status.WAITING_CONFIRMATION;
-    public ArrayList<Record> history;
+    public Rating rating;
+    public Status status;
     
     public enum Rating 
     {
@@ -37,23 +37,17 @@ public abstract class Invoice extends Serializable
         FAILED;
     }
     
-    public abstract double getTotalPay();
+    public abstract double getTotalPay(Product product);
     
     protected Invoice(int buyerId, int productId) 
     {
         
-        rating = Rating.NONE;
-        status = Status.WAITING_CONFIRMATION;
+        this.rating = Rating.NONE;
+        this.status = Status.WAITING_CONFIRMATION;
         this.complaintId = -1;
         this.buyerId = buyerId;
         this.productId = productId;
-        this.date = new Date();
+        date = java.util.Calendar.getInstance().getTime();
     }
     
-    
-    public class Record {
-        public Status status;
-        public Date date;
-        public String message;
-    }
 }
