@@ -1,11 +1,15 @@
 package com.aidanJmartBO.controller;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.aidanJmartBO.ObjectPoolThread;
 import com.aidanJmartBO.Payment;
 import com.aidanJmartBO.dbjson.JsonTable;
 
+@RestController
+@RequestMapping("/payment")
 public class PaymentController implements BasicGetController<Payment>{
 
 	public static final long DELIVERED_LIMIT_MS = 0;
