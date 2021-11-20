@@ -9,7 +9,8 @@ public class PhoneTopUp extends Invoice {
         this.phoneNumber = phoneNumber;
     }
     
-    public double getTotalPay(Product product) {
-        return 0;
+    @Override
+    public double getTotalPay(Product product){
+        return Treasury.getAdjustedPrice(product.price, product.discount);
     }
 }

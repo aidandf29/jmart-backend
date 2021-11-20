@@ -1,5 +1,6 @@
 package com.aidanJmartBO;
 
+import com.aidanJmartBO.dbjson.Serializable;
 
 /**
  * Write a description of class Coupon here.

@@ -1,5 +1,8 @@
 package com.aidanJmartBO;
 import java.util.Date;
+
+import com.aidanJmartBO.dbjson.Serializable;
+
 import java.util.ArrayList;
 
 
@@ -17,6 +20,7 @@ public abstract class Invoice extends Serializable
     public int complaintId;
     public Rating rating;
     public Status status;
+    
     
     public enum Rating 
     {
@@ -40,6 +44,12 @@ public abstract class Invoice extends Serializable
     
     public abstract double getTotalPay(Product product);
     
+    class Record{
+        public Date date;
+        public String message;
+        public Status status;
+    }
+    
     protected Invoice(int buyerId, int productId) 
     {
         
@@ -48,7 +58,7 @@ public abstract class Invoice extends Serializable
         this.complaintId = -1;
         this.buyerId = buyerId;
         this.productId = productId;
-        date = java.util.Calendar.getInstance().getTime();
+        this.date = new Date();
     }
     
 }

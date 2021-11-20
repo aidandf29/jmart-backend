@@ -1,6 +1,8 @@
 package com.aidanJmartBO;
 import java.util.regex.*;
 
+import com.aidanJmartBO.dbjson.Serializable;
+
 /**
  * Write a description of class Account here.
  *
@@ -13,8 +15,9 @@ public class Account extends Serializable
     public String email;
     public String password;
     public double balance;
+	public Store store;
     public final static String REGEX_EMAIL = "(^[a-zA-Z0-9&_*~]+(?:\\.[a-zA-Z0-9&_*~]+)*@[A-Za-z0-9-_]+(?:\\.[A-Za-z0-9]+)+)"; 
-    public final static String REGEX_PASSWORD = "^(?=.*[a-z])(?=.*\\d)(?=.*[A-Z])[a-zA-Z\\d]{8,}$";
+    public final static String REGEX_PASSWORD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$";
     
     public Account(String name, String email, String password, double balance)
     {

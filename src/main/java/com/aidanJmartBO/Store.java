@@ -1,6 +1,8 @@
 package com.aidanJmartBO;
 import java.util.regex.*;
 
+import com.aidanJmartBO.dbjson.Serializable;
+
 /**
  * Write a description of class Store here.
  *

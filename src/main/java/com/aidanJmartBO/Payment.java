@@ -12,7 +12,7 @@ public class Payment extends Invoice
 {
     public int productCount;
     public Shipment shipment;
-    public ArrayList<Record> history;
+    public ArrayList<Record> history = new ArrayList<>();
     
     public Payment(int buyerId, int productId, int productCount, Shipment shipment) 
     {
@@ -34,7 +34,7 @@ public class Payment extends Invoice
 
 
         public Record( Status status, String massage) {
-            this.date = java.util.Calendar.getInstance().getTime();
+            this.date = new Date();;
             this.status = status;
             this.massage = massage;
         }

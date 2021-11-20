@@ -1,5 +1,6 @@
 package com.aidanJmartBO;
 
+import com.aidanJmartBO.dbjson.JsonDBEngine;
 import com.google.gson.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -96,7 +97,9 @@ public class Jmart
     }
     public static void main(String[] args)
     {
-    	SpringApplication.run(Jmart.class, args);
+    	JsonDBEngine.Run(Jmart.class);
+        SpringApplication.run(Jmart.class, args);
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> JsonDBEngine.join()));
 //        try{       
 //            List<Product> list = read("C:\\Users\\aidan\\Documents\\nguliah\\smt 5\\OOP\\Project\\jmart/randomProductList.json");
 //            List<Product> filter = filterByPrice(list, 0.0, 20000.0);

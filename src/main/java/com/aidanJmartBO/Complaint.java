@@ -1,5 +1,8 @@
 package com.aidanJmartBO;
 import java.util.Date;
+
+import com.aidanJmartBO.dbjson.Serializable;
+
 import java.text.SimpleDateFormat;
 
 /**
