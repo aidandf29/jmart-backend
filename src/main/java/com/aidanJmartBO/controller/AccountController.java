@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 import org.springframework.web.bind.annotation.*;
 import com.aidanJmartBO.Account;
 import com.aidanJmartBO.Store;
+import com.aidanJmartBO.dbjson.JsonAutowired;
 import com.aidanJmartBO.dbjson.JsonTable;
 
 
@@ -12,6 +13,8 @@ import com.aidanJmartBO.dbjson.JsonTable;
 @RequestMapping("/account")
 public class AccountController implements BasicGetController<Account>
 {
+	@JsonAutowired(filepath = "C:\\Users\\aidan\\Documents\\nguliah\\smt 5\\OOP\\Project\\src\\main\\java\\com\\account.json", value = Account.class)
+	
     public static JsonTable<Account> accountTable;
     public static final String REGEX_EMAIL = "(^[a-zA-Z0-9&_*~]+(?:\\\\.[a-zA-Z0-9&_*~]+)*@[A-Za-z0-9-_]+(?:\\\\.[A-Za-z0-9]+)+)";
     public static final String REGEX_PASSWORD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\\\d)[a-zA-Z\\\\d]{8,}$";
