@@ -1,17 +1,10 @@
 package com.aidanJmartBO.dbjson;
 
-import java.util.Comparator;
-import java.util.*;
+import java.util.HashMap;
 
-/**
- * Write a description of class Recognizable here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class Serializable implements Comparable <Serializable>
+public class Serializable implements Comparable<Serializable>
 {
-	private static HashMap<Class<?>, Integer> mapCounter = new HashMap<>();
+    private static HashMap<Class<?>, Integer> mapCounter = new HashMap<>();
     public final int id;
 
     protected Serializable()
@@ -44,7 +37,5 @@ public class Serializable implements Comparable <Serializable>
     {
         return Integer.compare(this.id, other.id);
     }
-    
 }
-
 

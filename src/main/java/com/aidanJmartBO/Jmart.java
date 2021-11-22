@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
- 
+
 
 
 /**
@@ -31,75 +31,80 @@ public class Jmart
 	public static long WAITING_CONF_LIMIT_MS;
 	
 	public static boolean paymentTimekeeper(Payment payment) {
-		 Payment.Record record = payment.history.get(payment.history.size() - 1);
-	        long elapsed = System.currentTimeMillis() - record.date.getTime();
-	        if (record.status.equals(Invoice.Status.WAITING_CONFIRMATION) && (elapsed > WAITING_CONF_LIMIT_MS)) {
-	            record.status = Invoice.Status.FAILED;
-	            return true;
-	        }else if (record.status.equals(Invoice.Status.DELIVERED) && (elapsed > DELIVERED_LIMIT_MS)) {
-	            record.status = Invoice.Status.FINISHED;
-	            return true;
-	        } else if (record.status.equals(Invoice.Status.ON_PROGRESS) && (elapsed > ON_PROGRESS_LIMIT_MS)) {
-	            record.status = Invoice.Status.FAILED;
-	            return true;
-	        } else if (record.status.equals(Invoice.Status.ON_DELIVERY) && (elapsed > ON_PROGRESS_LIMIT_MS)) {
-	            record.status = Invoice.Status.DELIVERED;
-	            return true;
-	        }  else {
-	            return false;
-	        	}
-	}
+        return false;
+    }
 	
-    class Country
-    {
-        public String name;
-        public int population;
-        public List<String> listOfStates;
-    }
-    
-    public static List<Product> filterByCategory(List<Product> list, ProductCategory category)
-    {
-        List<Product> products = new ArrayList<>();
-        for(Product product : list)
-        {
-            if(product.category.equals(category))
-            {
-                products.add(product);
-            }
-        }
-        return products;
-    }
-    public static List<Product> filterByPrice(List<Product> list, double minPrice, double maxPrice)
-    {
-        List<Product> produk = new ArrayList<>();
-        for(int i = 0; i < list.size(); i++)
-        {
-            if(minPrice <= 0.0)
-            {
-                if(list.get(i).price <= maxPrice)
-                {
-                	produk.add(list.get(i));
-                }
-            }else if(maxPrice <= 0.0)
-            {
-                if(list.get(i).price >= minPrice)
-                {
-                	produk.add(list.get(i));
-                }
-            }else{
-                if(list.get(i).price >= minPrice && list.get(i).price <= maxPrice)
-                {
-                	produk.add(list.get(i));
-                }
-            }
-        }
-        return produk;
-    }
+//	public static boolean paymentTimekeeper(Payment payment) {
+//		 Payment.Record record = payment.history.get(payment.history.size() - 1);
+//	        long elapsed = System.currentTimeMillis() - record.date.getTime();
+//	        if (record.status.equals(Invoice.Status.WAITING_CONFIRMATION) && (elapsed > WAITING_CONF_LIMIT_MS)) {
+//	            record.status = Invoice.Status.FAILED;
+//	            return true;
+//	        }else if (record.status.equals(Invoice.Status.DELIVERED) && (elapsed > DELIVERED_LIMIT_MS)) {
+//	            record.status = Invoice.Status.FINISHED;
+//	            return true;
+//	        } else if (record.status.equals(Invoice.Status.ON_PROGRESS) && (elapsed > ON_PROGRESS_LIMIT_MS)) {
+//	            record.status = Invoice.Status.FAILED;
+//	            return true;
+//	        } else if (record.status.equals(Invoice.Status.ON_DELIVERY) && (elapsed > ON_PROGRESS_LIMIT_MS)) {
+//	            record.status = Invoice.Status.DELIVERED;
+//	            return true;
+//	        }  else {
+//	            return false;
+//	        	}
+//	}
+//	
+//    class Country
+//    {
+//        public String name;
+//        public int population;
+//        public List<String> listOfStates;
+//    }
+//    
+//    public static List<Product> filterByCategory(List<Product> list, ProductCategory category)
+//    {
+//        List<Product> products = new ArrayList<>();
+//        for(Product product : list)
+//        {
+//            if(product.category.equals(category))
+//            {
+//                products.add(product);
+//            }
+//        }
+//        return products;
+//    }
+//    public static List<Product> filterByPrice(List<Product> list, double minPrice, double maxPrice)
+//    {
+//        List<Product> produk = new ArrayList<>();
+//        for(int i = 0; i < list.size(); i++)
+//        {
+//            if(minPrice <= 0.0)
+//            {
+//                if(list.get(i).price <= maxPrice)
+//                {
+//                	produk.add(list.get(i));
+//                }
+//            }else if(maxPrice <= 0.0)
+//            {
+//                if(list.get(i).price >= minPrice)
+//                {
+//                	produk.add(list.get(i));
+//                }
+//            }else{
+//                if(list.get(i).price >= minPrice && list.get(i).price <= maxPrice)
+//                {
+//                	produk.add(list.get(i));
+//                }
+//            }
+//        }
+//        return produk;
+//    }
     public static void main(String[] args)
     {
     	JsonDBEngine.Run(Jmart.class);
         SpringApplication.run(Jmart.class, args);
         Runtime.getRuntime().addShutdownHook(new Thread(() -> JsonDBEngine.join()));
+    }
 //        try{       
 //            List<Product> list = read("C:\\Users\\aidan\\Documents\\nguliah\\smt 5\\OOP\\Project\\jmart/randomProductList.json");
 //            List<Product> filter = filterByPrice(list, 0.0, 20000.0);
@@ -148,41 +153,41 @@ public class Jmart
 //        } catch (Throwable t) {
 //            t.printStackTrace();
 //        }
-    	
-
-    }
-    public static List<Product> read(String filepath) throws FileNotFoundException 
-    {
-        List<Product> produk = new ArrayList<>();
-        try
-        {
-            Gson gson = new Gson();
-            JsonReader reader = new JsonReader(new FileReader(filepath));
-            reader.beginArray();
-            while(reader.hasNext())
-            {
-            	produk.add(gson.fromJson(reader, Product.class));
-            }
-        }catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        return produk;
-    }
-    
-    private static List<Product> paginate(List<Product> list, int page, int pageSize, Predicate<Product> pred) {
-        return list.stream().filter(i -> pred.predicate(i)).skip(page * pageSize).limit(pageSize).collect(Collectors.toList());
-    }
-
-    public static List<Product> filterByName(List<Product> list, String search, int page, int pageSize) {
-        Predicate<Product> predicate = i -> (i.name.toLowerCase().contains(search.toLowerCase()));
-        return paginate(list, page, pageSize, predicate);
-    }
-
-    public static List<Product> filterByAccountId(List<Product> list, int accountId, int page, int pageSize) {
-        Predicate<Product> predicate = i -> (i.accountId == accountId);
-        return paginate(list, page, pageSize, predicate);
-    }
+//    	
+//
+//    }
+//    public static List<Product> read(String filepath) throws FileNotFoundException 
+//    {
+//        List<Product> produk = new ArrayList<>();
+//        try
+//        {
+//            Gson gson = new Gson();
+//            JsonReader reader = new JsonReader(new FileReader(filepath));
+//            reader.beginArray();
+//            while(reader.hasNext())
+//            {
+//            	produk.add(gson.fromJson(reader, Product.class));
+//            }
+//        }catch (Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+//        return produk;
+//    }
+//    
+//    private static List<Product> paginate(List<Product> list, int page, int pageSize, Predicate<Product> pred) {
+//        return list.stream().filter(i -> pred.predicate(i)).skip(page * pageSize).limit(pageSize).collect(Collectors.toList());
+//    }
+//
+//    public static List<Product> filterByName(List<Product> list, String search, int page, int pageSize) {
+//        Predicate<Product> predicate = i -> (i.name.toLowerCase().contains(search.toLowerCase()));
+//        return paginate(list, page, pageSize, predicate);
+//    }
+//
+//    public static List<Product> filterByAccountId(List<Product> list, int accountId, int page, int pageSize) {
+//        Predicate<Product> predicate = i -> (i.accountId == accountId);
+//        return paginate(list, page, pageSize, predicate);
+//    }
          
         
 }

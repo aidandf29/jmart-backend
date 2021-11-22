@@ -12,6 +12,7 @@ import org.springframework.context.annotation.ClassPathScanningCandidateComponen
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 
 
+
 /** 
  * Handle load and store for {@link JsonTable}
  * @author Netlab Team

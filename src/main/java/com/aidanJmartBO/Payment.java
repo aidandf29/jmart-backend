@@ -2,8 +2,6 @@ package com.aidanJmartBO;
 import java.util.ArrayList;
 import java.util.Date;
 
-import com.aidanJmartBO.dbjson.JsonAutowired;
-
 /**
  * Write a description of class Payment here.
  *
@@ -12,11 +10,9 @@ import com.aidanJmartBO.dbjson.JsonAutowired;
  */
 public class Payment extends Invoice
 {
-	
-	
     public int productCount;
     public Shipment shipment;
-    public ArrayList<Record> history = new ArrayList<>();
+    public ArrayList<Record> history;
     
     public Payment(int buyerId, int productId, int productCount, Shipment shipment) 
     {
@@ -38,7 +34,7 @@ public class Payment extends Invoice
 
 
         public Record( Status status, String massage) {
-            this.date = new Date();;
+            this.date = java.util.Calendar.getInstance().getTime();
             this.status = status;
             this.massage = massage;
         }
