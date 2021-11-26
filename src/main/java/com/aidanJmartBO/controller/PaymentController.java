@@ -62,9 +62,9 @@ public class PaymentController implements BasicGetController<Payment> {
                 for(Product product : ProductController.productTable){
                     if(product.accountId == productId){
                         Payment newPayment = new Payment(buyerId, productId, productCount, new Shipment(shipmentAddress, 0, shipmentPlan, null));
-                        double totalPay = newPayment.getTotalPay(product);
-                        if(account.balance >= totalPay){
-                            account.balance -= totalPay;
+                        double paytotal = newPayment.getTotalPay(product);
+                        if(account.balance >= paytotal){
+                            account.balance -= paytotal;
                             newPayment.history.add(new Payment.Record(Invoice.Status.WAITING_CONFIRMATION, "WAITING_CONFIRMATION"));
                             paymentTable.add(newPayment);
                             poolThread.add(newPayment);
