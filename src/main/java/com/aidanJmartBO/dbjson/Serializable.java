@@ -38,4 +38,3 @@ public class Serializable implements Comparable<Serializable>
         return Integer.compare(this.id, other.id);
     }
 }
-

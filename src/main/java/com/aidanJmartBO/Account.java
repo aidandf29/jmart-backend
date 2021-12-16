@@ -28,15 +28,13 @@ public class Account extends Serializable
         this.balance = balance;
         
     }
-    
-    
+        
     @Override
     public String toString()
     {
         return "Name : " + this.name + "\nEmail : " + this.email + "\nPassword : " + this.password;
     }
-    
-     public boolean validate() {
+    public boolean validate() {
         Pattern emailPattern = Pattern.compile(REGEX_EMAIL);
         Pattern passwordPattern = Pattern.compile(REGEX_PASSWORD);
         Matcher emailMatcher = emailPattern.matcher(this.email);
@@ -47,6 +45,6 @@ public class Account extends Serializable
         else {
             return false;
         }
-    }
-    
+    }   
 }
+   

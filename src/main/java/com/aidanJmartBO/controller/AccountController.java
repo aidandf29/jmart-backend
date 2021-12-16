@@ -1,6 +1,7 @@
 package com.aidanJmartBO.controller;
 
 import com.aidanJmartBO.Account;
+import com.aidanJmartBO.Algorithm;
 import com.aidanJmartBO.Store;
 import com.aidanJmartBO.dbjson.JsonAutowired;
 import com.aidanJmartBO.dbjson.JsonTable;
@@ -25,53 +26,24 @@ public class AccountController implements BasicGetController<Account>
     
     @Override
     public JsonTable<Account> getJsonTable(){
-        return accountTable;
+     return accountTable;
     }
     
-    @PostMapping("/login")
-	Account login
-	(
-		@RequestParam String email,
-		@RequestParam String password
-	)
-	{
-		for (Account acc : accountTable) {
-			 if(acc.email.equals(email) && acc.password.equals(password)) {
-				return acc;
-			}
-		try {
-            MessageDigest md;
-            md = MessageDigest.getInstance("MD5");
-            byte[] messageDigest = md.digest(password.getBytes());
-            BigInteger no = new BigInteger(1, messageDigest);
-            String hashtext = no.toString(16);
-            while (hashtext.length() < 32) {
-                hashtext = "0" + hashtext;
-            }
-            for(Account account : accountTable){
-                if(account.email.equals(email) && account.password.equals(password)){
-                    return account;
-                }
-            }
-		} catch (NoSuchAlgorithmException e) {
-        	throw new RuntimeException(e);            }  
-		}
-		return null;
-	}
+    @GetMapping
+    String index() { return "account page"; }
     
-    
-	@PostMapping("/register")
-	Account register
-	(
-		@RequestParam String name,
-		@RequestParam String email,
-		@RequestParam String password
-	)
-	{
-		if((REGEX_PATTERN_EMAIL.matcher(email).find()) && (REGEX_PATTERN_PASSWORD.matcher(password).find()) && !name.isBlank()){
+    @PostMapping("/register")
+    Account register
+    (
+        @RequestParam String name,
+        @RequestParam String email,
+        @RequestParam String password
+    )
+    {
+        if((REGEX_PATTERN_EMAIL.matcher(email).find()) && (REGEX_PATTERN_PASSWORD.matcher(password).find()) && !name.isBlank()){
             for(Account account : accountTable){
                 if(account.email.equals(email)){
-                    return null;
+                    return account;
                 }
             }
             try {
@@ -83,36 +55,65 @@ public class AccountController implements BasicGetController<Account>
                 while (hashtext.length() < 32) {
                     hashtext = "0" + hashtext;
                 }
-                return new Account(name, email, hashtext, 0);
+                getJsonTable().add(new Account(name, email, hashtext, 0));
+                return new Account(name, email, password, 0);
             } catch (NoSuchAlgorithmException e) {
-            	throw new RuntimeException(e);            }  
-        }
-        return null;
-    }
-	
-	@PostMapping("/{id}/registerStore")
-    Store registerStore(int id, String name, String address, String phoneNumber){
-        if(accountTable.contains(accountTable.get(id)) && accountTable.get(id).store == null){
-            Store newStore = new Store(name, address, phoneNumber, 0);
-            accountTable.get(id).store = newStore;
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
             
-            return newStore;
         }
-        else{
-            return null;
-        }
+        
+        return new Account(name, email, password, 0);
     }
-	
-	@PostMapping("/{id}/topUp")
-    boolean topUp(int id, double balance){
-        if(accountTable.contains(accountTable.get(id))){
-            accountTable.get(id).balance += balance;
-            
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
+    
+    @PostMapping("/login")
+    Account login
+    (
+     @RequestParam String email,
+     @RequestParam String password
+    )
+    {
+     String generatedPassword;
+     try {
+      MessageDigest md = MessageDigest.getInstance("MD5");
+        
+               byte[] bytes = md.digest(password.getBytes());
 
-}
+               StringBuilder sb = new StringBuilder();
+               for(int i = 0; i < bytes.length; i++)
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+               
+               generatedPassword = sb.toString();
+     }
+     catch(NoSuchAlgorithmException e) {
+      throw new RuntimeException(e);
+     }
+     for(Account account : accountTable)
+           {
+               if (account.email.equals(email) && account.password.equals(generatedPassword))
+                   return account;
+           }
+           return null;
+    }
+    
+    @PostMapping("/{id}/registerStore")
+    Store registerStore(
+      @PathVariable int id,
+      @RequestParam String name,
+      @RequestParam String address,
+      @RequestParam String phoneNumber
+      ) {
+     Account acc = Algorithm.<Account>find(getJsonTable(), (account -> account.id == id && account.store == null));
+     acc.store = new Store(name, address, phoneNumber, 0);
+     return acc.store;
+    }
+    
+    @PostMapping("/{id}/topUp")
+    Account topUp(@PathVariable int id, @RequestParam double balance){
+     Account acc = Algorithm.<Account>find(getJsonTable(), (account -> account.id == id));
+     acc.balance += balance;
+     return acc;
+   //  return Algorithm.<Account>exists(getJsonTable(), (account -> account.id == id));
+    }
+   }
