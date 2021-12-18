@@ -3,11 +3,10 @@ import java.util.Date;
 import java.text.SimpleDateFormat; 
 
 /**
- * Write a description of class Shipment here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
+ * Shipment class is blueprint code about shipment
+@author Muh. Aidan Daffa
+*/
+
 public class Shipment
 {
 
@@ -46,38 +45,6 @@ public class Shipment
                 return ESTIMATION_FORMAT.format(reference.getDay() + 5); //KARGO
             }
             
-            
-            /*Calendar calendar = Calendar.getInstance();
-            cal.setTime(reference);
-            if(bit == Duration.NEXT_DAY.bit)
-            {
-                calendar.add(Calendar.Date,1);
-            }
-            else if (bit == Duration.REGULER.bit)
-            {
-                calendar.add(Calendar.Date,2);
-            }
-            else if(bit == Duration.KARGO.bit)
-            {
-                calendar.add(Calendar.Date,5);
-            }
-            if(bit == Duration.INSTANT.bit | bit == Duration.SAME_DAY.bit)
-            {
-                calendar.add(Calendar.Date,0);
-            }*/
-        }
-    
-//    public class MultiDuration{
-//        public byte bit;
-//        public MultiDuration(Duration... args)
-//        {
-//            
-//            byte bits = 0;
-//            for (Duration arg : args){
-//                bits |= arg.bit;
-//            }
-//            this.bit = bits;     
-//        }
         
     public boolean isDuration(plan reference)
     {

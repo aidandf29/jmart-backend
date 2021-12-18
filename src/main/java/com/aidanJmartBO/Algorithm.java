@@ -3,11 +3,17 @@ package com.aidanJmartBO;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Algorithm class mainly to filter
+@author Muh. Aidan Daffa
+*/
+
 public class Algorithm {
 	private Algorithm() {
 		
 	}
 	
+	//collect
 	public static <T> List<T> collect(T[] array, T value) 
 	 {
 	        List<T> list = new ArrayList<T>();
@@ -226,7 +232,9 @@ public class Algorithm {
 	        }
 	        return false;
 	    }
-    
+	    
+	    
+	    //find
 	    public static <T> T find(T[] array, T value) 
    	    {
         for (T arrayValue : array) 
@@ -300,6 +308,7 @@ public class Algorithm {
     }
 	
     
+    //max
     public static <T extends Comparable<? super T>> T max(T first, T second) 
     {
         if ((first.compareTo(second)) > 0) 
@@ -400,7 +409,7 @@ public class Algorithm {
     }
 	
 	
-  //min Comparable
+    //min Comparable
     public static <T extends Comparable<? super T>> T min(T first, T second)
     {
         if ((first.compareTo(second)) > 0) 
@@ -518,7 +527,7 @@ public class Algorithm {
         }
     }
     public static <T> List<T> paginate(Iterable<T> iterable, int page, int pageSize, Predicate<T> pred){
-        //Convert array to List
+        //to convert array to List
         List<T> newList = new ArrayList<>();
         for(T t : iterable){
             newList.add(t);
@@ -536,8 +545,10 @@ public class Algorithm {
             return newList.subList(0 ,0);
         }
     }
+        
     public static <T> List<T> paginate(Iterator<T> iterator, int page, int pageSize, Predicate<T> pred){
-        //Convert array to List
+        
+    	//to convert array to List
         List<T> newList = new ArrayList<>();
         while(iterator.hasNext()){
             newList.add(iterator.next());

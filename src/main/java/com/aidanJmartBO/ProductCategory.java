@@ -2,11 +2,9 @@ package com.aidanJmartBO;
 
 
 /**
- * Enumeration class ProductCategory - write a description of the enum class here
- *
- * @author (your name here)
- * @version (version number or date here)
- */
+ * Product Category is a class that contain category that is used in product class
+@author Muh. Aidan Daffa
+*/
 public enum ProductCategory
 {
     BOOK, KITCHEN, ELECTRONIC, FASHION, GAMING, GADGET, MOTHERCARE, COSMETICS, 

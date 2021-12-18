@@ -1,5 +1,8 @@
 package com.aidanJmartBO;
 
+/**
+@author Muh. Aidan Daffa
+*/
 public class Pair <T,U>{
 
 	public T first;

@@ -2,11 +2,10 @@ package com.aidanJmartBO;
 
 
 /**
- * Write a description of class ProductRating here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
+ * ProductRating class is code for ProductRating
+@author Muh. Aidan Daffa
+*/
+
 public class ProductRating
 {
     private long total;

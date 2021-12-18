@@ -13,10 +13,17 @@ import java.util.regex.Pattern;
 
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * class AcountController is the class that acts as command control around account
+
+@author Muh. Aidan Daffa
+*/
+
 @RestController
 @RequestMapping("/account")
 public class AccountController implements BasicGetController<Account>
 {
+	//field
 	@JsonAutowired(filepath = "C:\\Users\\aidan\\Documents\\nguliah\\smt 5\\OOP\\Project\\src\\main\\java\\com\\account.json", value = Account.class)
 	public static JsonTable<Account> accountTable;
 	public static final String REGEX_EMAIL = "([A-Za-z0-9-_.]+@[A-Za-z0-9-_]+(?:\\.[A-Za-z0-9]+)+)";
@@ -32,6 +39,7 @@ public class AccountController implements BasicGetController<Account>
     @GetMapping
     String index() { return "account page"; }
     
+    //register an account
     @PostMapping("/register")
     Account register
     (
@@ -39,6 +47,7 @@ public class AccountController implements BasicGetController<Account>
         @RequestParam String email,
         @RequestParam String password
     )
+    
     {
         if((REGEX_PATTERN_EMAIL.matcher(email).find()) && (REGEX_PATTERN_PASSWORD.matcher(password).find()) && !name.isBlank()){
             for(Account account : accountTable){
@@ -97,6 +106,7 @@ public class AccountController implements BasicGetController<Account>
            return null;
     }
     
+    //register a store
     @PostMapping("/{id}/registerStore")
     Store registerStore(
       @PathVariable int id,

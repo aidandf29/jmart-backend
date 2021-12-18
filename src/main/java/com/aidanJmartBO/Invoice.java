@@ -7,11 +7,10 @@ import java.util.ArrayList;
 
 
 /**
- * Abstract class Invoice - write a description of the class here
- *
- * @author (your name here)
- * @version (version number or date here)
- */
+ * Invoice class is blueprint code for invoice
+@author Muh. Aidan Daffa
+*/
+
 public abstract class Invoice extends Serializable
 {
     public final Date date;
@@ -28,7 +27,8 @@ public abstract class Invoice extends Serializable
         NEUTRAL,
         GOOD;
     }
-
+    
+    //enum for status
     public enum Status 
     {
         WAITING_CONFIRMATION,

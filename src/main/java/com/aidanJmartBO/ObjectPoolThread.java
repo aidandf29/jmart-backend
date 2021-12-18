@@ -3,6 +3,10 @@ package com.aidanJmartBO;
 import java.util.*;
 import java.util.function.Function;
 
+/**
+@author Muh. Aidan Daffa
+*/
+
 public class ObjectPoolThread<T> extends Thread {
 
     private boolean exitSignal = false;

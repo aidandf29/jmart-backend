@@ -24,11 +24,19 @@ import com.aidanJmartBO.controller.AccountController;
 
 import com.aidanJmartBO.controller.ProductController;
 
+/**
+ * class PaymentController is the class that acts as command control around payment
+@author Muh. Aidan Daffa
+*/
+
+
+
 
 @RestController
 @RequestMapping("/payment")
 public class PaymentController implements BasicGetController<Payment> {
 	
+	//field
 	public static final long DELIVERED_LIMIT_MS = 1000;
 	public static final long ON_DELIVERIY_LIMIT_MS = 1000;
 	public static final long ON_PROGRESS_LIMIT_MS = 1000;
@@ -38,7 +46,7 @@ public class PaymentController implements BasicGetController<Payment> {
 	JsonTable<Payment> paymentTable;
 	public static ObjectPoolThread<Payment> poolThread = new ObjectPoolThread<Payment>(PaymentController::timekeeper);
 	
-	 //Get invoices of seller's products
+	 //to get invoices of seller's products
 		@GetMapping("/{id}/page")
 	    @ResponseBody List<Payment> getInvoices(@PathVariable int id, @RequestParam(defaultValue="0") int page, @RequestParam(defaultValue="1000") int pageSize){
 	        List<Payment> paymentList = new ArrayList<>();
@@ -55,7 +63,7 @@ public class PaymentController implements BasicGetController<Payment> {
 	        return Algorithm.paginate(paymentList, page, pageSize, e->true);
 	    }
 
-	    //Get invoices of seller's purchases
+	    //to get invoices of seller's purchases
 	    @GetMapping("/{id}/purchases/page")
 	    @ResponseBody List<Payment> getMyInvoices(@PathVariable int id, @RequestParam(defaultValue="0") int page, @RequestParam(defaultValue="1000") int pageSize){
 	        return Algorithm.<Payment>paginate(getJsonTable(), page, pageSize, p -> p.buyerId == id);
@@ -109,15 +117,7 @@ public class PaymentController implements BasicGetController<Payment> {
 	                            return newPayment;
 	                        }
 	                    }
-//	                    else {
-//	                    	System.out.println(productSingular.id);
-//	                    	System.out.println(productId);
-//	                    }
-	                }
-	            }
-	        }
-//	        Payment newPayment = new Payment(buyerId, productId, productCount, new Shipment(shipmentAddress, 0, shipmentPlan, null));
-//            double totalPay = newPayment.getTotalPay(ProductController.productTable.get(1));
+
 	        System.out.println("masuk2");
 	        return null;
 	    }
@@ -125,7 +125,8 @@ public class PaymentController implements BasicGetController<Payment> {
 	    public JsonTable<Payment> getJsonTable() {
 	        return paymentTable;
 	    }
-
+	    
+	    //submit payment
 	    @PostMapping("/{id}/submit")
 	    boolean submit(@PathVariable int id, String receipt) {
 	        for(Payment payment : paymentTable){

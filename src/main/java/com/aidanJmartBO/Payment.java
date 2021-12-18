@@ -3,6 +3,10 @@ package com.aidanJmartBO;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Payment class is blueprint code for payment
+@author Muh. Aidan Daffa
+*/
 
 public class Payment extends Invoice
 {

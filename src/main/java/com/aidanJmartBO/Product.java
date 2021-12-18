@@ -3,11 +3,9 @@ package com.aidanJmartBO;
 import com.aidanJmartBO.dbjson.Serializable;
 
 /**
- * Write a description of class Product here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
+ * Product class is blueprint code for product
+@author Muh. Aidan Daffa
+*/
 public class Product extends Serializable
 {
     public String name;

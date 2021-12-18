@@ -1,7 +1,12 @@
 package com.aidanJmartBO;
 
+/**
+@author Muh. Aidan Daffa
+*/
+
 public class Treasury {
 	
+	//field
 	public static final double BOTTOM_FEE = 1000.0;
 	public static final double COMMISSION_MULTIPLIER = 0.05;
     public static final double BOTTOM_PRICE = 20000.0;

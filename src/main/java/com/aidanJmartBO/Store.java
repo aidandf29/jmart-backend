@@ -4,13 +4,13 @@ import java.util.regex.*;
 import com.aidanJmartBO.dbjson.Serializable;
 
 /**
- * Write a description of class Store here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
+ * Store class is blueprint code about Store
+@author Muh. Aidan Daffa
+*/
+
 public class Store extends Serializable
 {
+	//field
     public String name;
     public String address;
     public String phoneNumber;
@@ -18,6 +18,7 @@ public class Store extends Serializable
     public static final String REGEX_NAME = "^[a-z](?!.(\\s)).{4,20}$";
     public double balance;
     
+    //constructor
     public Store(String name, String address, String phoneNumber, double balance)
     {
         this.name = name;
@@ -25,7 +26,7 @@ public class Store extends Serializable
         this.phoneNumber = phoneNumber;
         this.balance = balance;
     }
-    
+    //constructor
     public Store(Account account, String name, String address, String phoneNumber)
     {
         //this.account = account;
@@ -35,6 +36,7 @@ public class Store extends Serializable
         this.phoneNumber = phoneNumber;
     }
     
+    //method to validate
     public boolean validate()
     {
         Pattern patternPhone = Pattern.compile(REGEX_PHONE);

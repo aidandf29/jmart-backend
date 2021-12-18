@@ -14,6 +14,14 @@ import com.aidanJmartBO.Predicate;
 import com.aidanJmartBO.dbjson.JsonAutowired;
 import com.aidanJmartBO.dbjson.JsonTable;
 
+/**
+ * class CouponController is the class that acts as command control around coupon
+@author Muh. Aidan Daffa
+*/
+
+
+
+
 @RestController
 @RequestMapping("/coupon")
 public class CouponControler implements BasicGetController<Coupon> {

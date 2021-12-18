@@ -6,17 +6,16 @@ import com.aidanJmartBO.dbjson.Serializable;
 import java.text.SimpleDateFormat;
 
 /**
- * Write a description of class Complaint here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
+ * Complaint class is code to complaint
+@author Muh. Aidan Daffa
+*/
 public class Complaint extends Serializable
 {
     
     public String desc;
     public final Date date;
     
+    //constructor
     public Complaint(int id, String desc){
        
         this.desc = desc;

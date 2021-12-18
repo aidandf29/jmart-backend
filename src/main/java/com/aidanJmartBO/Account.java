@@ -4,13 +4,14 @@ import java.util.regex.*;
 import com.aidanJmartBO.dbjson.Serializable;
 
 /**
- * Write a description of class Account here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * class Account is a account blueprint.
+ 
+ * @author Muh. Aidan Daffa J
+
  */
 public class Account extends Serializable
 {
+	//field
     public String name;
     public String email;
     public String password;
@@ -19,6 +20,7 @@ public class Account extends Serializable
     public final static String REGEX_PASSWORD = "^(?=.*[a-z])(?=.*\\d)(?=.*[A-Z])[a-zA-Z\\d]{8,}$";
     public Store store;
     
+    //Constructor    
     public Account(String name, String email, String password, double balance)
     {
         

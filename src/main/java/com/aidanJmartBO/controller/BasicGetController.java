@@ -12,6 +12,12 @@ import com.aidanJmartBO.Predicate;
 import com.aidanJmartBO.dbjson.JsonTable;
 import com.aidanJmartBO.dbjson.Serializable;
 
+/**
+ * class BasiGetController is the class that route pages and id
+@author Muh. Aidan Daffa
+*/
+
+
 @RestController
 public interface BasicGetController<T extends Serializable> {
 	

@@ -3,11 +3,10 @@ package com.aidanJmartBO;
 import com.aidanJmartBO.dbjson.Serializable;
 
 /**
- * Write a description of class Coupon here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
+ * Coupon class is code to adjust discount
+@author Muh. Aidan Daffa
+*/
+
 public class Coupon extends Serializable
 {
     
@@ -15,7 +14,7 @@ public class Coupon extends Serializable
     {
         DISCOUNT, REBATE
     }
-    // instance variables - replace the example below with your own
+    //field
     public final String name;
     public final int code;
     public final double cut;
@@ -23,9 +22,7 @@ public class Coupon extends Serializable
     public final double minimum;
     private boolean used;
 
-    /**
-     * Constructor for objects of class Coupon
-     */
+    //Constructor
     public Coupon(int id, String name, int code, Type type, double cut, double minimum)
     {
        

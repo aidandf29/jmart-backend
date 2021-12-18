@@ -20,13 +20,21 @@ import com.aidanJmartBO.ProductCategory;
 import com.aidanJmartBO.dbjson.JsonAutowired;
 import com.aidanJmartBO.dbjson.JsonTable;
 
+/**
+ * class ProductController is the class that acts as command control around product
+@author Muh. Aidan Daffa
+*/
+
+
+
+
 @RestController
 @RequestMapping("/product")
 public class ProductController implements BasicGetController<Product>  {
 
     public static @JsonAutowired(filepath = "C:\\Users\\aidan\\Documents\\nguliah\\smt 5\\OOP\\Project\\jmart\\src\\main\\java\\randomProductList.json", value = Product.class)JsonTable<Product>  productTable;
     
-  //Get seller's products
+  //to get seller's products
   	@GetMapping("/{id}/page")
       @ResponseBody List<Product> getProducts(@PathVariable int id, @RequestParam(defaultValue="0") int page, @RequestParam(defaultValue="1000") int pageSize){
   		List<Product> productList = new ArrayList<>();
@@ -43,7 +51,7 @@ public class ProductController implements BasicGetController<Product>  {
           return Algorithm.paginate(productList, page, pageSize, e->true);
       }
   	
-  	//Get product of seller's purchases
+  	//to get products of seller's purchases
       @GetMapping("/{id}/purchases/page")
       @ResponseBody List<Product> getMyProducts(@PathVariable int id, @RequestParam(defaultValue="0") int page, @RequestParam(defaultValue="1000") int pageSize){
           List<Product> productList = new ArrayList<>();
