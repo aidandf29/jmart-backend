@@ -103,12 +103,12 @@ public class PaymentController implements BasicGetController<Payment> {
 	    				@RequestParam byte shipmentPlan) {
 	        for(Account account : AccountController.accountTable){
 	            if(account.id == buyerId){
-	            	System.out.println("masuk3");
+	            	
 	                for(Product productSingular : ProductController.productTable){
 	                    if(productSingular.id == productId){
 	                        Payment newPayment = new Payment(buyerId, productId, productCount, new Shipment(shipmentAddress, 0, shipmentPlan, null));
 	                        double totalPay = newPayment.getTotalPay(productSingular);
-	                        System.out.println("masuk");
+	                        
 	                        if(account.balance >= totalPay){
 	                            account.balance -= totalPay;
 	                            newPayment.history.add(new Payment.Record(Invoice.Status.WAITING_CONFIRMATION, "WAITING_CONFIRMATION"));
@@ -118,10 +118,12 @@ public class PaymentController implements BasicGetController<Payment> {
 	                        }
 	                    }
 
-	        System.out.println("masuk2");
+	                }
+	            }
+	        }
+	        
 	        return null;
 	    }
-
 	    public JsonTable<Payment> getJsonTable() {
 	        return paymentTable;
 	    }

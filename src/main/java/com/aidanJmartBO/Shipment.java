@@ -42,9 +42,9 @@ public class Shipment
             }else if((plan & REGULER.bit) != 0){
                 return ESTIMATION_FORMAT.format(reference.getDay() + 2);
             }else {
-                return ESTIMATION_FORMAT.format(reference.getDay() + 5); //KARGO
+                return ESTIMATION_FORMAT.format(reference.getDay() + 5);
             }
-            
+        }
         
     public boolean isDuration(plan reference)
     {
